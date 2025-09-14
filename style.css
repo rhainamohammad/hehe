@@ -1,0 +1,499 @@
+/* === General Reset === */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  color: #333;
+}
+
+/* === Index Page (cake intro) === */
+body.index-page {
+  background: url("assets/bgr1.png") no-repeat center center fixed;
+  background-size: cover;   /* make sure it fills the screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.index-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cake {
+ width: 60vw;
+  max-width: 450px;
+  cursor: pointer;
+  transition: transform 0.6s ease;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+
+.cake:hover {
+  transform: perspective(1000px) rotateY(10deg) rotateX(5deg) scale(1.05);
+}
+
+/* dancing/wiggling animation */
+@keyframes danceCake {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
+  10%  { transform: translate(-10px, -10px) rotate(-10deg) scale(1.05); }
+  20%  { transform: translate(10px, -15px) rotate(10deg) scale(1.05); }
+  30%  { transform: translate(-10px, -10px) rotate(-10deg) scale(1.05); }
+  40%  { transform: translate(10px, 0) rotate(10deg) scale(1); }
+  50%  { transform: translate(-10px, 10px) rotate(-10deg) scale(0.95); }
+  60%  { transform: translate(10px, 0) rotate(10deg) scale(1); }
+  70%  { transform: translate(-10px, -10px) rotate(-10deg) scale(1.05); }
+  80%  { transform: translate(10px, -15px) rotate(10deg) scale(1.05); }
+  90%  { transform: translate(-10px, -10px) rotate(-10deg) scale(1.05); }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+
+.cake.animate {
+  animation: danceCake 3.5s ease-in-out infinite;
+}
+
+
+body.index-page p {
+  margin-top: 15px;
+  font-size: 1.5rem;
+  color: #8f648d;
+}
+
+/* === Surprise Page (sparkling video) === */
+body.surprise-page {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  color: rgb(84, 5, 84);
+  text-align: center;
+}
+
+#bg-video {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;                 /* shrink to text width */
+  text-align: center;
+  padding: 0 50px;
+}
+
+.overlay h1 {
+  font-family: 'Great Vibes', cursive;   /* elegant script font */
+  font-size: clamp(4.5rem, 7vw, 8.5rem);   /* responsive size */
+  font-weight: 600;
+  color: #f4d9e7;
+  text-shadow: 2.5px 2.5px 14px rgba(255, 8, 119, 0.959);
+  margin: 0 auto;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+
+.overlay h1 .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideWord 1s ease-out forwards;
+}
+
+@keyframes slideWord {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animate each word with staggered delay */
+.overlay h1 .word:nth-child(1) { animation-delay: 1s; }
+.overlay h1 .word:nth-child(2) { animation-delay: 2s; }
+.overlay h1 .word:nth-child(3) { animation-delay: 3s; }
+.overlay h1 .word:nth-child(4) { animation-delay: 3.3s; }
+
+.next-btn {
+  margin-top: 80px;
+  padding: 18px 32px;
+  border: none; 
+  border-radius: 25px; 
+  font-size: 1.2rem; 
+  cursor: pointer; 
+  background: #e97eb5; 
+  color: rgb(70, 3, 68); 
+  transition: 0.3s; 
+  opacity: 0; 
+  animation: fadeInBtn 1.5s ease forwards; 
+  animation-delay: 4.5s; /* after all words */
+ }
+
+.next-btn:hover {
+  background: #e0a7c3;
+}
+
+@keyframes fadeInBtn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === Story Page (love story + confetti + bg image) === */
+body.story-page {
+  background-image: url("assets/b1.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: scroll; /* change to fixed for parallax */
+}
+
+.section {
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Story Titles */
+.title {
+  font-family: 'Great Vibes', cursive;   /* elegant script font */
+  font-size: 3.5rem;                     /* big, but not overwhelming */
+  font-weight: 400;
+  color: #e76a85;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 6px rgba(177, 33, 78, 0.865);
+}
+
+.subtitle {
+  font-family: 'Playfair Display', serif; /* classy serif */
+  font-size: 2rem;                        /* just a little smaller than .title */
+  font-weight: 550;
+  margin: 15px 0 25px;
+  color: #a61e4d;
+  position: relative;
+}
+
+.subtitle::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ff99c8;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Story Paragraphs */
+.story-page p {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.5rem;     /* bigger for readability */
+  font-weight: 500;       /* makes it medium weight */
+  line-height: 1.8;
+  color: #4d3c4c;
+  max-width: 900px;
+  margin: 0 auto 30px;
+}
+
+img.photo {
+  display: block;
+  margin: 10px auto;      /* centers the image */
+  width: 100px;           /* fixed width, adjust as needed */
+  height: auto;           /* keeps aspect ratio */
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 1s ease;
+}
+
+img.photo.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+  font-size: 1.2em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+}
+
+ul li.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+button.next {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1em;
+  cursor: pointer;
+  background: #ff99c8;
+  color: white;
+  transition: 0.3s;
+}
+
+button.next:hover {
+  background: #ff4d6d;
+}
+
+/* Confetti hearts */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 1.5rem;
+  animation: fall linear forwards;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+/* Falling side images */
+.faller {
+  position: fixed;
+  top: -10px;
+  width: 20px;
+  height: auto;
+  pointer-events: none;
+  z-index: 9999;
+  animation: fall linear forwards;
+  will-change: transform;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Sliding big images */
+.slide {
+  opacity: 0;
+  transition: all 1s ease;
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  margin: 20px 0;
+}
+
+.slide.from-left {
+  transform: translateX(-100%);
+}
+
+.slide.from-right {
+  transform: translateX(100%);
+}
+
+.slide.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* =========================
+   General Page Styling
+   ========================= */
+body.games-page {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  text-align: center;
+  font-family: Arial, sans-serif;
+
+  /* Background settings */
+  background-image: url("assets/pink.png");
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;  /* scrolls smoothly with page */
+  scroll-behavior: smooth;
+  overflow: scroll;
+}
+
+/* =========================
+   Shared Section Styling
+   ========================= */
+.game-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 60px 20px 40px; /* top padding for heading + bottom space */
+  width: 100%;
+}
+
+/* Heading Styling */
+.game-section h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.7rem;
+  color: #ec7a9c;
+  font-weight: bold;
+  text-shadow: 1px 1px #fff;
+  margin-bottom: 30px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* =========================
+   Balloon Grid - 2x2
+   ========================= */
+#game {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: auto auto;
+  gap: 80px;
+  justify-items: center;
+  width: 100%;
+  align-items: start;
+  max-width: 600px;
+  margin-top: 80px;
+}
+
+/* =========================
+   Gift Grid - 5x3
+   ========================= */
+#gift-game {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(4, auto);
+  gap: 5px;
+  justify-content: center;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 20px;
+}
+
+/* =========================
+   Balloon & Gift Styling
+   ========================= */
+.balloon, .gift {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.balloon img, .gift img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-10px); }
+  50% { transform: translateY(-20px); }
+  75% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Balloon Pop Effect */
+.balloon.pop {
+  transform: scale(1.5);
+}
+
+/* Gift Open Effect */
+.gift.opened {
+  opacity: 0.6;
+  transform: scale(1.1) rotate(-10deg);
+}
+
+/* =========================
+   Pop Message Styling*/
+
+.message {
+  background: rgba(255, 190, 222, 0.95);
+  border-radius: 20px;
+  padding: 12px 18px;
+  font-size: 1.1rem;
+  color: #444;
+  height:auto;
+  width:auto;
+
+  display: inline-block;       /* shrink-wraps to text */
+  max-width: 220px;            /* controls line length */
+  min-width: 100px;            /* keeps tiny messages balanced */
+  white-space: normal;         /* allows wrapping */
+  word-break: break-word;      /* avoids overflow */
+  line-height: 1.4;
+  text-align: center;
+
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* =========================
+   Reset Button Styling
+   ========================= */
+.reset-btn {
+  display: inline-block;
+  margin-top: 40px;
+  background-color: #f0809a;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.reset-btn:hover {
+  background-color: #ff3d6e;
+  transform: scale(1.05);
+}
+
+/* =========================
+   Optional: Randomized gift float delays
+   ========================= */
+.gift:nth-child(1) { animation-delay: 0s; }
+.gift:nth-child(2) { animation-delay: 0.2s; }
+.gift:nth-child(3) { animation-delay: 0.4s; }
+.gift:nth-child(4) { animation-delay: 0.6s; }
+.gift:nth-child(5) { animation-delay: 0.8s; }
+.gift:nth-child(6) { animation-delay: 1s; }
+/* continue pattern for remaining gifts as needed */
+
